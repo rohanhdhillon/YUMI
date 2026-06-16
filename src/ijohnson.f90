@@ -209,12 +209,7 @@ subroutine ijohnson(rmin,rmax,Y,nbv,n,fl,useCholesky)
 
      
      !!$OMP SECTION
-     if (nbv<500)then
-        call dgetrf(nbv,nbv,Y,nbv,isuppz,info)
-        call dgetri(nbv,Y,nbv,isuppz,work,lwork,info) 
-     else
-        call matinv(Y,nbv)
-     endif
+     call matinv(Y,nbv)
      
 
      !$OMP PARALLEL DO PRIVATE (i, j)
@@ -238,12 +233,7 @@ subroutine ijohnson(rmin,rmax,Y,nbv,n,fl,useCholesky)
      !$OMP END PARALLEL DO
 
     
-     if (nbv<500)then
-       call dgetrf(nbv,nbv,Y,nbv,isuppz,info)
-       call dgetri(nbv,Y,nbv,isuppz,work,lwork,info) 
-     else
-       call matinv(Y,nbv)
-     endif
+     call matinv(Y,nbv)
      
 
 

@@ -82,9 +82,8 @@ subroutine tmat(RP,nbv,nopen,ltab,ktab,rmax,Tr,Ti,iprint,imp)
   call dgemm('N','N',nbv,nbv,nbv,1.d00,RP,nbv,Nn,nbv,-1.d00,Nnp,nbv)
   !ggr=Nnp
   call dgetrf(nbv,nbv,Nnp,nbv,ipiv,info)
-  call dgetri(nbv,Nnp,nbv,ipiv,work,lwork,info)
-  !call imprime2(iprint,imp,nopen,Nnp,'Num(-1)   ')
-  call dgemm('N','N',nbv,nbv,nbv,1.d00,Nnp,nbv,Jnp,nbv,0.d00,K,nbv)
+  call dgetrs('N',nbv,nbv,Nnp,nbv,ipiv,Jnp,nbv,info)
+  K=Jnp
   !call imprime2(iprint,imp,nopen,K,'K         ')
   Ko=K(1:nopen,1:nopen)
   !call imprime2(iprint,imp,nopen,Ko,'Ko        ')
