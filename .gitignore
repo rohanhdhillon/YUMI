@@ -1,0 +1,6 @@
+*.pyc
+*.o
+*.x
+*.mod
+Test_*
+*.txt

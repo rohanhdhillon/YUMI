@@ -1,0 +1,21 @@
+&INPUT 
+ LABEL='HCO+  H2  / PES Masso -LW input yumi v5-1 Nejmeddine Jaidane'
+ ITYPE=3,
+ npas=08,
+ rmin=3.0d0,
+ rmax=50.d0,
+ E=1000.d0,
+ JTOTL=45, JTOTU=50, JTSTEP=1,  ! partial waves
+&END
+&BASIS
+ JMIN=45,JMAX=50,JSTEP=1,
+ J1MIN=0,     
+ J1MAX=28,
+ J1STEP=1,
+ J2MIN=1,      
+ J2MAX=1,
+ J2STEP=2,
+ be1=1.48751,
+ be2=60.0000,
+ mu =1.8710,
+&END
