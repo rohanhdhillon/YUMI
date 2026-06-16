@@ -253,6 +253,7 @@ def UnitTest(Platform="", NumCores="", CompileFlag=True, BaseText="", UnitTestCa
 
     with open("SubmitJob.sh",'w') as f:
        f.write(BaseText)
+    os.chmod("SubmitJob.sh", 0o755)
        
     #Submit the job
     if "AEKALAVYA" == Platform:    
@@ -341,6 +342,7 @@ def SpeedTest(Platform=None, BaseText=None, CompileFlag=True, NumCores=[1,2,4,6,
         with open("SubmitJob.sh", 'w') as f:
             ModifiedText = BaseText.replace("NUMCORES", str(nCores))
             f.write(ModifiedText)
+        os.chmod("SubmitJob.sh", 0o755)
 
         if "AEKALAVYA" == Platform:    
             print("Submitted job in Aekalayva...")
@@ -519,8 +521,9 @@ def main():
         BaseText =  MITSupercloudBaseText
     
     else:
-        print("Please add the name of the platform here to run")
-        assert 1==2
+        print("Running on an unrecognized host; using desktop settings")
+        Platform = "AEKALAVYA"
+        BaseText = AekalavyaBaseText
 
 
     #Run the code in the proper mode.

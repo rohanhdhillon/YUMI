@@ -5,13 +5,21 @@ TARGET = ifort
 
 
 FC = gfortran
-LIBS=  -llapack -liomp5 -lpthread -lm -ldl
-FLFLAGS =-g -O3 -fopenmp -march=native
+UNAME_S := $(shell uname -s)
+SDKROOT ?= $(shell xcrun --show-sdk-path 2>/dev/null)
+ifeq ($(UNAME_S),Darwin)
+LIBS = -isysroot $(SDKROOT) -framework Accelerate -lpthread -lm
+AS_PREFIX = -B/usr/bin/
+else
+LIBS = -llapack -liomp5 -lpthread -lm -ldl
+AS_PREFIX =
+endif
+FLFLAGS =-g -O3 -fopenmp -march=native $(AS_PREFIX)
 
 %.o : %.f
 	$(FC) -c $(FLFLAGS) $<
 %.o: %.f90
-	$(FC) -c $(FLFLAGS) $< $(LIBS)
+	$(FC) -c $(FLFLAGS) $<
 
 MODULES= mod_constantes.o mod_pot.o mod_base.o mod_fact.o mod_input.o
 OBJ= yumi.o spline1.o pot.o  tmat.o  imprime2.o  ijohnson.o \

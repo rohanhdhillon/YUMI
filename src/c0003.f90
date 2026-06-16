@@ -314,7 +314,7 @@ subroutine c0003
             time_end = OMP_GET_WTIME()
 
            
-            write(outputFileNum, '(A,I9.7F9.2)') "Time taken for V03 is: ", nlev,time_end-time_begin  
+            write(outputFileNum, '(A,I9,F9.2)') "Time taken for V03 is: ", nlev,time_end-time_begin  
             flush(outputFileNum)  
             
             !*********************************************
@@ -325,7 +325,7 @@ subroutine c0003
             call ijohnson(rmin,rmax,RP,nlev,npas,fl, useCholesky)
             time_end = OMP_GET_WTIME()
 
-            write(outputFileNum,'(A,I9.7F9.2)') "Time taken for ijohnson: ",nlev, time_end-time_begin
+            write(outputFileNum,'(A,I9,F9.2)') "Time taken for ijohnson: ",nlev, time_end-time_begin
               
             !$OMP PARALLEL DO PRIVATE(i,j)
             do i=1,nlev

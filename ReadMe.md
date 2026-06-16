@@ -86,4 +86,3 @@ Post processing will be part of Paper 2, and will be accordingly added here whic
   
 ## Potential files included
   The potential for CO2+H2 was performed by Prof. Laurent, and it is now included here. This is a tedious task, and different versions of the potential have been calculated some of which are expected to have better precision over others. These values are converted to the form that YUMI uses using ConvertPotential.py program included in the folder. 
-
